@@ -19,15 +19,7 @@ module Wp2hatena
         open(src_path, 'r') do |fp|
           buffer = fp.read
           @convert_data.each do |data|
-            tag = ''
-            if data[:width] and data[:height]
-              tag = ":w#{data[:width]},h#{data[:height]}"
-            elsif data[:width]
-              tag = ":w#{data[:width]}"
-            elsif data[:height]
-              tag = ":h#{data[:height]}"
-            end
-
+            tag = make_tag(data)
             buffer.gsub!(data[:html_tag], "[#{data[:syntax]}#{tag}]\r\n")
             puts "converted [#{data[:syntax]}#{tag}]"
           end
@@ -35,6 +27,20 @@ module Wp2hatena
           buffer.gsub!("\r\n", "  \n")
           File.write(dest_path, buffer)
         end
+      end
+
+      private
+
+      def make_tag(data)
+        tag = ''
+        if data[:width] and data[:height]
+          tag = ":w#{data[:width]},h#{data[:height]}"
+        elsif data[:width]
+          tag = ":w#{data[:width]}"
+        elsif data[:height]
+          tag = ":h#{data[:height]}"
+        end
+        tag
       end
     end
 
