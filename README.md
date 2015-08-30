@@ -1,6 +1,5 @@
 # Wp2hatena
 
-[WIP]
 WordPressエクスポートデータから画像を抽出して、はてなフォトライフにアップロードし、aタグをはてな記法に置換するライブラリ
 
 ## Installation
@@ -13,16 +12,22 @@ $ cd wp2hatena
 $ bundle
 ```
 
+or
+
+```bash
+$ gem install wp2hatena
+```
+
 ## Usage
 
 ```bash
-$ ./bin/wp2hatena_oauth
+$ wp2hatena_oauth
 ```
 
 access to `http://localhost:4567`
 
 ```bash
-$ ./bin/wp2hatena
+$ wp2hatena
 ```
 
 ## Development

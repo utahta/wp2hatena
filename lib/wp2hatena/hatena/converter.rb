@@ -24,7 +24,7 @@ module Wp2hatena
             puts "converted [#{data[:syntax]}#{tag}]"
           end
 
-          buffer.gsub!("\r\n", "  \n")
+          buffer.gsub!("\r\n", "  \n") # 改行してくれないので、スペース2つ入れて対応
           File.write(dest_path, buffer)
         end
       end
