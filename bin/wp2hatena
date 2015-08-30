@@ -21,12 +21,22 @@ fotolife = Wp2hatena::Hatena::Fotolife.new(
     ACCESS_TOKEN,
     ACCESS_TOKEN_SECRET
 )
+converter = Wp2hatena::Hatena::Converter.new
 
 image = Wp2hatena::Wordpress::Image.new
 image.download(WORDPRESS_XML_PATH) do |data|
+  puts "downloaded #{data[:html_tag]}"
   file_path = data[:file_path]
   response = fotolife.upload(
       file_path,
       File.basename(file_path, '.*')
   )
+
+  puts "uploaded syntax:#{response[:syntax]} width:#{data[:width]} height:#{data[:height]}]"
+  converter.set_convert_data(data[:html_tag], data[:width], data[:height], response[:syntax])
 end
+
+converter.convert(
+    WORDPRESS_XML_PATH,
+    WORDPRESS_XML_PATH.gsub(/\.xml$/, '.hatena.xml')
+)

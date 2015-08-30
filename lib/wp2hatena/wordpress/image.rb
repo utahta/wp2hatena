@@ -19,6 +19,7 @@ module Wp2hatena
                   file_path: fetch_image(image_url),
                   width: match_width(line),
                   height: match_height(line),
+                  html_tag: line,
               }
               yield data
             end

@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["utahta"]
   spec.email         = ["labs.ninxit@gmail.com"]
 
-  spec.summary       = %q{wordpress to hatena blog}
-  spec.description   = %q{wordpress to hatena blog}
+  spec.summary       = %q{convert images of wordpress to hatena blog}
+  spec.description   = %q{convert images of wordpress to hatena blog}
   spec.homepage      = "https://github.com/utahta/wp2hatena.git"
   spec.license       = "MIT"
 
