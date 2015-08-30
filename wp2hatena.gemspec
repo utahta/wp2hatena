@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{convert images of wordpress to hatena blog}
   spec.homepage      = "https://github.com/utahta/wp2hatena.git"
   spec.license       = "MIT"
-  
+
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
