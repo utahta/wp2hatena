@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'rexml/document'
+require 'uri'
+
+print 'WORDPRESS_XML_PATH：'
+WORDPRESS_XML_PATH = gets.chomp
+
+open(WORDPRESS_XML_PATH, 'r') do |fp|
+  buffer = fp.read
+  doc = REXML::Document.new(buffer)
+  REXML::XPath.match(doc, "//wp:post_name").map do |post_name|
+    next if post_name.text.nil?
+    buffer.gsub!(post_name.text, URI.decode(post_name.text))
+  end
+
+  File.write(
+    WORDPRESS_XML_PATH.gsub(/\.xml$/, '.decoded.xml'),
+    buffer
+  )
+end
